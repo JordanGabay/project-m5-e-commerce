@@ -2,6 +2,8 @@ const itemsRouter = require('express').Router()
 const Item = require('../models/item')
 //const itemData = require('../data/items.json')
 
+//BASE URL = http://localhost:4000/api/items
+
 itemsRouter.get('/', async (req, res) => {
     const items = await Item.find({})
 

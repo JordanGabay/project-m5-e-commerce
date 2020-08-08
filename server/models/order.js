@@ -5,6 +5,8 @@ const orderSchema = new mongoose.Schema({
     lastName: String,
     email: String,
     totalPaid: Number,
+    date: Date,
+    status: String,
     order: [
         {
             item: {

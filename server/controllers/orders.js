@@ -2,6 +2,8 @@ const ordersRouter = require('express').Router()
 const Order = require('../models/order')
 const Item = require('../models/item')
 
+//BASE URL = http://localhost:4000/api/orders
+
 ordersRouter.get('/', async (req, res) => {
     const orders = await Order.find({}).populate('order.item', { name: 1, price: 1 })
 
@@ -17,7 +19,9 @@ ordersRouter.get('/:id', async (req, res) => {
 // see orderSchema in models/order.js for proper layout of order object to be sent in request body
 ordersRouter.post('/', async (req, res) => {
     const order = new Order({
-        ...req.body
+        ...req.body,
+        date: new Date(),
+        status: 'processing'
     })
 
     const savedOrder = await order.save()

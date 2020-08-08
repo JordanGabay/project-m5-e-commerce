@@ -1,0 +1,6 @@
+PUT http://localhost:4000/api/items/5f2dd8234f965009404da056
+Content-Type: application/json
+
+{
+    "purchased": 2
+}

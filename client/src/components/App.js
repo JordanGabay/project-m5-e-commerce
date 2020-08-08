@@ -1,15 +1,13 @@
 import React, { useState, useEffect } from 'react';
+import Homepage from './Homepage'
 
-function App() {
-  const [bacon, setBacon] = useState(null);
+const App = () => {
 
-  useEffect(() => {
-    fetch('/bacon')
-      .then(res => res.json())
-      .then(data => setBacon(data));
-  }, []);
-
-  return <div>{bacon ? bacon : `...where's my stuff?...`}</div>;
+  return (
+    <>
+    <Homepage />
+    </>
+  );
 }
 
 export default App;

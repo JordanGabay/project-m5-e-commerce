@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components";
 import { NavLink } from "react-router-dom";
 
-import { ReactComponent as Logo } from "../assets/logo.svg";
+import { ReactComponent as Logo } from "./assets/logo.svg";
 
 const Navbar = () => {
   return (

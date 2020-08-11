@@ -1,31 +1,28 @@
-import React, { useState, useEffect } from 'react'
-import styled from 'styled-components'
-
+import React, { useState, useEffect } from "react";
+import styled from "styled-components";
 
 const ProductFeed = () => {
-    const [items, setItems] = useState([])
+  const [items, setItems] = useState([]);
 
-    useEffect(() => {
-        fetch('/api/items')
-            .then(res => res.json())
-            .then(data => setItems(data))
-    }, [])
+  useEffect(() => {
+    fetch("/api/items")
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  }, []);
 
-
-    
-    return (
-      <ProductGrid>
-        {items.map((item) => (
-          <ItemWrapper>
-              <Image src={item.imageSrc} />
-            <ItemName>{item.name}</ItemName>
-            <ItemBody>{item.body_location}</ItemBody>
-            <ItemPrice>{item.price}</ItemPrice>
-          </ItemWrapper>
-        ))}
-      </ProductGrid>
-    );
-}
+  return (
+    <ProductGrid>
+      {items.map((item) => (
+        <ItemWrapper>
+          <Image src={item.imageSrc} />
+          <ItemName>{item.name}</ItemName>
+          <ItemBody>{item.body_location}</ItemBody>
+          <ItemPrice>{item.price}</ItemPrice>
+        </ItemWrapper>
+      ))}
+    </ProductGrid>
+  );
+};
 
 const ProductGrid = styled.div`
   display: flex;
@@ -48,20 +45,18 @@ const Image = styled.img`
 `;
 
 const ItemName = styled.span`
-font-weight:bold;
-text-align: center;
-padding: 5px;
-font-size: 15px;
-`
+  font-weight: bold;
+  text-align: center;
+  padding: 5px;
+  font-size: 15px;
+`;
 
 const ItemPrice = styled.span`
-font-size: 13px;
-`
+  font-size: 13px;
+`;
 
 const ItemBody = styled.span`
-font-size: 13px;
-`
+  font-size: 13px;
+`;
 
-
-
-export default ProductFeed
+export default ProductFeed;

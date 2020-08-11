@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Globalstyles from "./Globalstyles";
 import Navbar from "./Navbar";
-import Homepage from './Homepage';
+import Homepage from "./Homepage";
 import ProductFeed from "./ProductFeed";
 import Login from "./Login";
 import Cart from "./Cart";

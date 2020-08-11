@@ -1,10 +1,8 @@
-import React from 'react';
-import styled from 'styled-components'
+import React from "react";
+import styled from "styled-components";
 
 const Login = () => {
-    return(
-        <div>Login</div>
-    )
-}
+  return <div>Login</div>;
+};
 
-export default Login
+export default Login;

@@ -2,25 +2,32 @@ import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { Link, useRouteMatch, useHistory } from 'react-router-dom'
 
-const ProductFeed = () => {
-  const [items, setItems] = useState([]);
+const ProductFeed = ({ items }) => {
+  const [itemsPerPage, setItemsPerPage] = useState(24);
   const history = useHistory()
   const match = useRouteMatch('/products/:page')
   const page = match ? Number(match.params.page) : 1
 
+  const startIndex = (page-1)*itemsPerPage
+  const endIndex = page*itemsPerPage
+  const maxPage = Math.ceil(348/itemsPerPage)
+  const display = items.slice(startIndex, endIndex)
 
-  useEffect(() => {
-    fetch(`/api/items/page/${page}`)
-      .then((res) => res.json())
-      .then((data) => setItems(data));
-  }, [page]);
 
   const handlePageSelect = (event) => {
     event.preventDefault()
     if (event.target.input.value < 2) event.target.input.value = ''
-    if (event.target.input.value > 15) event.target.input.value = 15
+    if (event.target.input.value >= maxPage) event.target.input.value = maxPage
     history.push(`/products/${event.target.input.value}`)
     event.target.input.value = ''
+  }
+
+  const handleItemsPerPageChange = (event) => {
+    if (page > Math.ceil(348/Number(event.target.value))) {
+      history.push(`/products/${Math.ceil(348/Number(event.target.value))}`)
+    }
+    setItemsPerPage(Number(event.target.value))
+    
   }
 
 
@@ -29,13 +36,20 @@ const ProductFeed = () => {
       {page !== 1 && <Link to={`/products/${page === 2 ? '' : page-1}`}>previous</Link>}
       <form onSubmit={(ev) => handlePageSelect(ev)} autocomplete='off' >
         <Input name='input' placeholder={page} />
-        <PageInfo>products {(page-1)*24+1}-{page === 15 ? 348 : page*24} of 348</PageInfo>
+        <PageInfo>products {startIndex + 1}-{page === maxPage ? 348 : endIndex} of 348</PageInfo>
       </form>
-      {page !== 15 && <Link to={`/products/${page+1}`}>next</Link>}
+      {page !== maxPage && <div><Link to={`/products/${page+1}`}>next</Link></div>}
+      <label for='numItems'>Items per page:</label>
+        <select name='numItems' onChange={(ev) => handleItemsPerPageChange(ev)}>
+          <option value='12'>12</option>
+          <option selected='selected' value='24'>24</option>
+          <option value='48'>48</option>
+          <option value='348'>all</option>
+        </select>
     </PageNav>
     
     <ProductGrid>
-      {items.map((item) => (
+      {display.map((item) => (
         <ItemWrapper>
           <Image src={item.imageSrc} />
           <ItemName>{item.name}</ItemName>

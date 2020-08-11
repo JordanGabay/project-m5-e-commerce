@@ -8,6 +8,18 @@ import ProductFeed from "./ProductFeed";
 import Login from "./Login";
 import Cart from "./Cart";
 const App = () => {
+  const [items, setItems] = useState([]);
+
+
+  useEffect(() => {
+    fetch(`/api/items/page/1`)
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+    fetch(`/api/items`)
+      .then((res) => res.json())
+      .then((data) => setItems(data));
+  }, []);
+
   return (
     <Wrapper>
       <Router>
@@ -20,7 +32,7 @@ const App = () => {
           </Route>
           <Route path="/products">
             {/* Old homepage feed moved here */}
-            <ProductFeed />
+            <ProductFeed items={items} />
           </Route>
           <Route exact path="/login">
             <Login />

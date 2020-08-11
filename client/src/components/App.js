@@ -18,7 +18,7 @@ const App = () => {
             {/* Changed homepage to a website introduction page */}
             <Homepage />
           </Route>
-          <Route exact path="/products">
+          <Route path="/products">
             {/* Old homepage feed moved here */}
             <ProductFeed />
           </Route>

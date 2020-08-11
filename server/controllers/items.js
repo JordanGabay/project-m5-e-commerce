@@ -4,8 +4,9 @@ const Item = require('../models/item')
 
 //BASE URL = http://localhost:4000/api/items
 
-itemsRouter.get('/', async (req, res) => {
-    const items = await Item.find({})
+itemsRouter.get('/page/:num', async (req, res) => {
+    const skip = (Number(req.params.num) - 1)*24
+    const items = await Item.find().skip(skip).limit(24)
 
     res.status(200).json(items.map(item => item.toJSON()))
 })

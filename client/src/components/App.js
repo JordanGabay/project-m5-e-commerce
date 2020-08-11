@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Globalstyles from "./Globalstyles";
 import Navbar from "./Navbar";
+import Searchbar from './Searchbar'
 import Homepage from "./Homepage";
 import ProductFeed from "./ProductFeed";
 import Login from "./Login";
@@ -25,6 +26,7 @@ const App = () => {
       <Router>
         <Globalstyles />
         <Navbar />
+        <Searchbar />
         <Switch>
           <Route exact path="/">
             {/* Changed homepage to a website introduction page */}

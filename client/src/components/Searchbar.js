@@ -7,8 +7,15 @@ const Searchbar = () => {
     
     const handleSearch = (event) => {
         event.preventDefault()
-        history.push(`/products?search=${event.target.search.value}`)
-        event.target.search.value = ''
+        if (event.target.search.value === '') {
+            event.target.search.placeholder = 'enter a search term!'
+        } else {
+            history.push(`/products?search=${event.target.search.value}`)
+            event.target.search.value = ''
+            event.target.search.placeholder = ''
+        }
+            
+        
     }
 
     return (

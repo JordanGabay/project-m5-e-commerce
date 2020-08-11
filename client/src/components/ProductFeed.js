@@ -23,7 +23,9 @@ const ProductFeed = ({ items }) => {
   }
 
   const handleItemsPerPageChange = (event) => {
-    if (page > Math.ceil(348/Number(event.target.value))) {
+    if (event.target.value === '348') {
+      history.push(`/products`)
+    } else if (page > Math.ceil(348/Number(event.target.value))) {
       history.push(`/products/${Math.ceil(348/Number(event.target.value))}`)
     }
     setItemsPerPage(Number(event.target.value))

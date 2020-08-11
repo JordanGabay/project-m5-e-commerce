@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { GoogleLogin } from "react-google-login";
 
-export default function Login() {
+import config from "../utils/config.js";
+
+const Login = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [url, setUrl] = useState("");
@@ -15,10 +17,12 @@ export default function Login() {
     setUrl(imageUrl);
   };
 
+  console.log(config.CLIENT_ID);
+
   return (
     <div className="App">
       <GoogleLogin
-        clientId={process.env.CLIENT_ID} // How to insert API key hidden in .env?
+        clientId="" // insert CLIENT_ID reference here
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
@@ -29,7 +33,9 @@ export default function Login() {
       <h2>Welcome: {name}</h2>
       <h2>Email: {email}</h2>
       <h3>Google Id: {googleId}</h3>
-      <img src={url} />
+      <img src={url} alt="user" />
     </div>
   );
-}
+};
+
+export default Login;

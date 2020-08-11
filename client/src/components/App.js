@@ -3,14 +3,14 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import styled from "styled-components";
 import Globalstyles from "./Globalstyles";
 import Navbar from "./Navbar";
-import Searchbar from './Searchbar'
+import Searchbar from "./Searchbar";
 import Homepage from "./Homepage";
 import ProductFeed from "./ProductFeed";
 import Login from "./Login";
 import Cart from "./Cart";
+
 const App = () => {
   const [items, setItems] = useState([]);
-
 
   useEffect(() => {
     fetch(`/api/items/page/1`)
@@ -50,6 +50,5 @@ const App = () => {
     </Wrapper>
   );
 };
-const Wrapper = styled.div`
-`;
+const Wrapper = styled.div``;
 export default App;

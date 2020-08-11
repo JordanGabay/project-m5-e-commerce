@@ -36,6 +36,7 @@ export default Navbar;
 const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
+  align-items: center;
 `;
 
 const StyledLogo = styled(Logo)`

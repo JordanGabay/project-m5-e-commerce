@@ -5,7 +5,7 @@ import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-import { getCurrentUser } from "./Login";
+import { currentUserId } from "./Login";
 
 const Cart = () => {
   const [status, setStatus] = useState("loading");
@@ -15,7 +15,7 @@ const Cart = () => {
     setStatus("idle");
   }, []);
 
-  getCurrentUser();
+  console.log(currentUserId);
 
   return status === "idle" ? (
     <>

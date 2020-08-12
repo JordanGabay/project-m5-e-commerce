@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-let currentUserId = "";
+export let currentUserId = "";
 
 const Login = () => {
   const [name, setName] = useState("");
@@ -53,11 +53,6 @@ const Login = () => {
   ) : (
     <CircularProgress />
   );
-};
-
-export const getCurrentUser = (id) => {
-  console.log(currentUserId);
-  return currentUserId;
 };
 
 export default Login;

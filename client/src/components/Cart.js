@@ -1,13 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import CartItem from '../CartItem'
-import {useSelector} from 'react-redux';
-import {getStoreItemArray} from '../reducers'
+import CartItem from "../CartItem";
+import { useSelector } from "react-redux";
+import { getStoreItemArray } from "../reducers";
+import CircularProgress from "@material-ui/core/CircularProgress";
+
+import { getCurrentUser } from "./Login";
 
 const Cart = () => {
+  const [status, setStatus] = useState("loading");
   const storeItems = useSelector(getStoreItemArray);
-  console.log(storeItems)
-  return (
+
+  useEffect(() => {
+    setStatus("idle");
+  }, []);
+
+  getCurrentUser();
+
+  return status === "idle" ? (
     <>
       <ShoppingWrapper>
         <ShoppingCart>Shopping Bag</ShoppingCart>
@@ -16,9 +26,9 @@ const Cart = () => {
           <IPR>Price</IPR>
           <IPR>Remove</IPR>
         </Wrapper2>
-       {storeItems.map((item) => {
-         return <CartItem item ={item}/>
-       })}
+        {storeItems.map((item) => {
+          return <CartItem item={item} />;
+        })}
       </ShoppingWrapper>
       <EmailWrapper>
         <Checkout>Checkout</Checkout>
@@ -30,6 +40,8 @@ const Cart = () => {
         <CheckoutBox>PROCEED TO CHECKOUT</CheckoutBox>
       </EmailWrapper>
     </>
+  ) : (
+    <CircularProgress />
   );
 };
 
@@ -61,10 +73,9 @@ const EnterEmail = styled.p``;
 const EmailTextBox = styled.input``;
 
 const CheckoutBox = styled.button`
-margin-left: 10px;
-color:white;
-background-color:black;
-`
-
+  margin-left: 10px;
+  color: white;
+  background-color: black;
+`;
 
 export default Cart;

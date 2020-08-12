@@ -4,6 +4,7 @@ import CartItem from "../CartItem";
 import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Link } from 'react-router-dom'
 
 import { currentUser } from "./Login";
 
@@ -37,7 +38,7 @@ const Cart = () => {
         </EmailSpan>
         <EnterEmail>Email Address</EnterEmail>
         <EmailTextBox input type="email" id="email" name="email"></EmailTextBox>
-        <CheckoutBox>PROCEED TO CHECKOUT</CheckoutBox>
+        <CheckoutBox to='/checkout'>PROCEED TO CHECKOUT</CheckoutBox>
       </EmailWrapper>
     </>
   ) : (
@@ -72,10 +73,11 @@ const EnterEmail = styled.p``;
 
 const EmailTextBox = styled.input``;
 
-const CheckoutBox = styled.button`
-  margin-left: 10px;
-  color: white;
-  background-color: black;
-`;
+const CheckoutBox = styled(Link)`
+margin-left: 10px;
+color:white;
+background-color:black;
+`
+
 
 export default Cart;

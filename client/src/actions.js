@@ -9,3 +9,7 @@ export const removeItem = (item) => {
     item
   };
 };
+
+export const clearCart = () => ({
+  type: "CLEAR_CART"
+})

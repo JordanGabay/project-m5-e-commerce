@@ -20,6 +20,8 @@ export default function cartReducer(state = initialState, action) {
         ...stateCopy,
       };
     }
+    case "CLEAR_CART":
+      return {}
     default:
       return state;
   }

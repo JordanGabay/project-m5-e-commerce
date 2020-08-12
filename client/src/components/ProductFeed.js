@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState} from "react";
 import styled from "styled-components";
 import { Link, useRouteMatch, useHistory, useLocation } from 'react-router-dom'
+import {useDispatch} from 'react-redux';
+import {addItem} from '../actions'
 
 const ProductFeed = ({ items }) => {
   const [itemsPerPage, setItemsPerPage] = useState(24);
@@ -40,6 +42,8 @@ const ProductFeed = ({ items }) => {
     setItemsPerPage(Number(event.target.value))
     
   }
+
+   const dispatch = useDispatch();
 
 
 
@@ -83,7 +87,9 @@ const ProductFeed = ({ items }) => {
           <Image src={item.imageSrc} />
           <ItemName>{item.name}</ItemName>
           <ItemBody>{item.body_location}</ItemBody>
-          <ItemPrice>{item.price}</ItemPrice>
+           <Button onClick={() => dispatch(addItem(item))}>
+              Add to Cart - {item.price}
+            </Button>
         </ItemWrapper>
       ))}
     </ProductGrid>
@@ -156,12 +162,12 @@ const ItemName = styled.span`
   font-size: 15px;
 `;
 
-const ItemPrice = styled.span`
-  font-size: 13px;
-`;
-
 const ItemBody = styled.span`
   font-size: 13px;
 `;
+
+const Button = styled.button`
+
+`
 
 export default ProductFeed;

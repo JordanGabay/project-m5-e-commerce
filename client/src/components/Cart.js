@@ -1,7 +1,12 @@
 import React from "react";
 import styled from "styled-components";
+import CartItem from '../CartItem'
+import {useSelector} from 'react-redux';
+import {getStoreItemArray} from '../reducers'
 
 const Cart = () => {
+  const storeItems = useSelector(getStoreItemArray);
+  console.log(storeItems)
   return (
     <>
       <ShoppingWrapper>
@@ -11,7 +16,9 @@ const Cart = () => {
           <IPR>Price</IPR>
           <IPR>Remove</IPR>
         </Wrapper2>
-        <InCartItems>Insert Items here after...</InCartItems>
+       {storeItems.map((item) => {
+         return <CartItem item ={item}/>
+       })}
       </ShoppingWrapper>
       <EmailWrapper>
         <Checkout>Checkout</Checkout>
@@ -42,8 +49,6 @@ const Wrapper2 = styled.div`
 `;
 
 const IPR = styled.span``;
-
-const InCartItems = styled.h3``
 
 const EmailWrapper = styled.div``;
 

@@ -5,6 +5,7 @@ const cors = require('cors')
 
 const itemsRouter = require('./controllers/items')
 const ordersRouter = require('./controllers/orders')
+const authRouter = require('./controllers/auth')
 const mongoose = require('mongoose')
 
 console.info('connecting to', config.MONGODB_URI)
@@ -23,5 +24,6 @@ app.use(express.json())
 
 app.use('/api/items', itemsRouter)
 app.use('/api/orders', ordersRouter)
+app.use('/api/auth', authRouter)
 
 module.exports = app

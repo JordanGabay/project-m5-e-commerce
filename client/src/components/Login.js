@@ -1,13 +1,19 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 
-import config from "../utils/config.js";
 
 const Login = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [url, setUrl] = useState("");
   const [googleId, setGoogleId] = useState("");
+  const [clientId, setClientId] = useState('')
+
+  useEffect(() => {
+    fetch('/api/auth')
+      .then(res => res.json())
+      .then(data => setClientId(data))
+  }, [])
 
   const responseGoogle = (res) => {
     const { name, email, imageUrl, googleId } = res.profileObj;
@@ -17,12 +23,12 @@ const Login = () => {
     setUrl(imageUrl);
   };
 
-  console.log(config.CLIENT_ID);
 
-  return (
-    <div className="App">
+
+  return (<>
+    {clientId && <div className="App">
       <GoogleLogin
-        clientId="" // insert CLIENT_ID reference here
+        clientId={clientId}
         buttonText="Login"
         onSuccess={responseGoogle}
         onFailure={responseGoogle}
@@ -34,7 +40,7 @@ const Login = () => {
       <h2>Email: {email}</h2>
       <h3>Google Id: {googleId}</h3>
       <img src={url} alt="user" />
-    </div>
+    </div>}</>
   );
 };
 

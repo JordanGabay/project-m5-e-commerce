@@ -20,12 +20,14 @@ const Account = ({ currentUser }) => {
           </h2>
           <h2>Email: {currentUser.email}</h2>
           <h3>Google Id: {currentUser.googleId}</h3>
+          <h2>Order History</h2>
+          <h2>Saved Addresses</h2>
+          <h2>Saved Payment Methods</h2>
         </div>
       )}
-      {currentUser === "null" && ()}
-      <h2>Order History</h2>
-      <h2>Saved Addresses</h2>
-      <h2>Saved Payment Methods</h2>
+      {currentUser === "null" && (
+        <div>Please sign in to view your account information</div>
+      )}
     </div>
   ) : (
     <CircularProgress />

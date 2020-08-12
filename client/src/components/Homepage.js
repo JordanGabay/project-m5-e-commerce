@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { currentUserId } from "./Login";
+import { currentUser } from "./Login";
 
 const Homepage = () => {
   const [status, setStatus] = useState("loading");
@@ -9,7 +9,7 @@ const Homepage = () => {
     setStatus("idle");
   }, []);
 
-  console.log(currentUserId);
+  console.log(currentUser);
 
   return status === "idle" ? (
     <>

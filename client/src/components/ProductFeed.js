@@ -4,7 +4,7 @@ import { Link, useRouteMatch, useHistory, useLocation } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { addItem } from "../actions";
 import CircularProgress from "@material-ui/core/CircularProgress";
-import { currentUserId } from "./Login";
+import { currentUser } from "./Login";
 
 const ProductFeed = ({ items }) => {
   const [status, setStatus] = useState("loading");
@@ -17,7 +17,7 @@ const ProductFeed = ({ items }) => {
   const match = useRouteMatch("/products/:page");
   const page = match ? Number(match.params.page) : 1;
 
-  console.log(currentUserId);
+  console.log(currentUser);
 
   useEffect(() => {
     history.push(`/products${search}`);

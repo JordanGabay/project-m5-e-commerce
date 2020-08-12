@@ -2,15 +2,14 @@ import React, { useState, useEffect } from "react";
 import { GoogleLogin } from "react-google-login";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
-export let currentUserId = "";
+import Account from "./Account";
+
+export let currentUser;
 
 const Login = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [url, setUrl] = useState("");
-  const [googleId, setGoogleId] = useState("");
   const [clientId, setClientId] = useState("");
   const [status, setStatus] = useState("loading");
+  const [currentUserInfo, setCurrentUserInfo] = useState("null");
 
   useEffect(() => {
     fetch("/api/auth")
@@ -22,33 +21,22 @@ const Login = () => {
   }, []);
 
   const responseGoogle = (res) => {
-    const { name, email, imageUrl, googleId } = res.profileObj;
-    setName(name);
-    setEmail(email);
-    setGoogleId(googleId);
-    setUrl(imageUrl);
-    currentUserId = googleId;
+    currentUser = res.profileObj;
+    setCurrentUserInfo(res.profileObj);
   };
 
   return status === "idle" ? (
     <>
       {clientId && (
-        <div className="App">
-          <GoogleLogin
-            clientId={clientId}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseGoogle}
-            cookiePolicy={"single_host_origin"}
-          />
-
-          <h1>Login with Google</h1>
-          <h2>Welcome: {name}</h2>
-          <h2>Email: {email}</h2>
-          <h3>Google Id: {googleId}</h3>
-          <img src={url} alt="user" />
-        </div>
+        <GoogleLogin
+          clientId={clientId}
+          buttonText="Sign in with Google"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
       )}
+      <Account currentUser={currentUserInfo} />
     </>
   ) : (
     <CircularProgress />

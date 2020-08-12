@@ -11,6 +11,10 @@ const ProductFeed = ({ items }) => {
   const match = useRouteMatch('/products/:page')
   const page = match ? Number(match.params.page) : 1
 
+  useEffect(() => {
+    history.push(`/products${search}`)
+  }, [lowPrice, highPrice])
+
   const filteredItems = items.filter(item => search ? item.name.toLowerCase().includes(search.slice(8)) : item)
     .filter(item => lowPrice && lowPrice > 0 ? Number(item.price.slice(1)) > lowPrice : item)
     .filter(item => highPrice && highPrice > 0 && highPrice > lowPrice ? Number(item.price.slice(1)) <= highPrice : item)
@@ -20,8 +24,6 @@ const ProductFeed = ({ items }) => {
   const startIndex = (page-1)*itemsPerPage
   const endIndex = page*itemsPerPage
   const display = filteredItems.slice(startIndex, endIndex)
-
-  
 
   const handlePageSelect = (event) => {
     event.preventDefault()

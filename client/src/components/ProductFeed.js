@@ -67,7 +67,7 @@ const ProductFeed = ({ items }) => {
   const dispatch = useDispatch();
 
   return (
-    <>
+    <FeedWrapper>
       {filteredItems.length > 0 ? (
         <>
           <PageNav>
@@ -156,9 +156,15 @@ const ProductFeed = ({ items }) => {
             </ItemWrapper>
           ))}
       </ProductGrid>
-    </>
+    </FeedWrapper>
   );
 };
+
+const FeedWrapper = styled.div`
+  .webkit-scrollbar {
+    display: none;
+  }
+`;
 
 const PriceFilter = styled.div``;
 

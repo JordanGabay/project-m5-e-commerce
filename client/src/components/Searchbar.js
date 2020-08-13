@@ -28,7 +28,7 @@ const Searchbar = () => {
 const Wrapper = styled.div`
   height: 50px;
   text-align: center;
-  padding-top: 12px;
+  padding-top: 13px;
 `;
 
 const Input = styled.input`

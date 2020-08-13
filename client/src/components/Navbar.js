@@ -46,12 +46,12 @@ const NavWrapper = styled.nav`
 
 const StyledLogo = styled.img`
   height: 28px;
-  margin: 10px 124px 0 0;
+  margin: 12px 124px 0 0;
 `;
 
 const NavItem = styled.li`
   .active {
-    color: red;
+    font-weight: bold;
   }
   &:hover {
     text-decoration: underline;
@@ -66,6 +66,9 @@ const NavbarLeft = styled.div`
 const NavbarRight = styled.div`
   display: flex;
   align-items: center;
+  position: absolute;
+  top: 28px;
+  left: 92vw;
 `;
 
 const StyledLink = styled(NavLink)`

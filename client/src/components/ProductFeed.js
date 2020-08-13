@@ -160,11 +160,7 @@ const ProductFeed = ({ items }) => {
   );
 };
 
-const FeedWrapper = styled.div`
-  .webkit-scrollbar {
-    display: none;
-  }
-`;
+const FeedWrapper = styled.div``;
 
 const PriceFilter = styled.div``;
 

@@ -3,6 +3,7 @@ import { useHistory } from 'react-router-dom'
 import { getStoreItemArray } from '../reducers'
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart } from '../actions'
+import styled from 'styled-components';
 
 const Checkout = () => {
     const dispatch = useDispatch()

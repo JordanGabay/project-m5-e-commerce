@@ -42,6 +42,7 @@ const NavWrapper = styled.nav`
   display: flex;
   margin: 12px;
   justify-content: space-between;
+  
 `;
 
 const StyledLogo = styled.img`

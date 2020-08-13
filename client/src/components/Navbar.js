@@ -40,6 +40,7 @@ export default Navbar;
 const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
+  margin-bottom: 25px;
 `;
 
 const StyledLogo = styled.img`
@@ -48,7 +49,6 @@ const StyledLogo = styled.img`
   top: 24px;
   height: 28px;
   z-index: -5;
-  /* margin: 3px 8px 0 0; */
 `;
 
 const NavItem = styled.li`
@@ -68,9 +68,6 @@ const NavbarLeft = styled.div`
 const NavbarRight = styled.div`
   display: flex;
   align-items: center;
-  /* position: absolute;
-  top: 28px;
-  left: 92vw; */
 `;
 
 const StyledLink = styled(NavLink)`

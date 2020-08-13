@@ -208,10 +208,12 @@ const SearchInfo = styled.div`
 const PreviousLink = styled(Link)`
   display: inline;
   margin-right: 20px;
+  color: darkslategrey;
 `;
 
 const NextLink = styled(Link)`
   display: inline;
+  color: darkslategrey;
 `;
 
 const ClearButton = styled.button`
@@ -233,7 +235,7 @@ const ItemWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: calc(60% / 4 + 90px);
+  width: calc(50% / 4 + 90px);
   margin: 1rem;
   box-sizing: border-box;
 `;
@@ -256,8 +258,10 @@ const ItemPrice = styled.span`
 `;
 
 const Button = styled.button`
-  background-color: darkgreen;
+  background-color: darkslategrey;
   color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
   margin-top: 5px;
 `;
 

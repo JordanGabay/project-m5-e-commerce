@@ -75,12 +75,13 @@ margin-top: 10px;
 `
 
 const CheckoutBox = styled(Link)`
-color:white;
-background-color:black;
-padding: 5px;
-border-radius: 5px;
-margin-left: 10px;
-`
+  background-color: #3c3c3c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+  margin-left: 10px;
+`;
 
 
 export default Cart;

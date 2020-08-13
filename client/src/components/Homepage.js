@@ -3,6 +3,7 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 import { currentUser } from "./Login";
 import styled from 'styled-components';
 import {NavLink} from 'react-router-dom';
+import homepagegif from './assets/homepagegif.gif'
 
 const Homepage = () => {
   const [status, setStatus] = useState("loading");
@@ -21,8 +22,10 @@ const Homepage = () => {
         future clients. You'll recognize some of the brands we sell such as
         Garmin, Sony, Jawbone and many more... Feel free to take a look!
       </WelcomeDiv>
-      <Brands>Some of our brands:</Brands>
-        <StyledLink to={"/products"}>Browse our products</StyledLink>
+      <ImageWrapper>
+        <Image src={homepagegif} alt="gif" />
+      </ImageWrapper>
+      <StyledLink to={"/products"}>Browse our products</StyledLink>
     </HomeWrapper>
   ) : (
     <CircularProgress />
@@ -31,6 +34,7 @@ const Homepage = () => {
 
 const WelcomeDiv = styled.div`
 margin-top: 50px;
+margin-bottom: 50px;
 `
 
 const HomeWrapper = styled.div`
@@ -42,11 +46,16 @@ const StyledLink = styled(NavLink)`
   
 `;
 
-const Brands = styled.p`
-margin-bottom: 100px;
-margin-top: 20px;
+const Image = styled.img`
+align-items: center;
+display: flex;
+margin-left: 200px;
+margin-bottom: 50px;
+border-radius: 5px;
 `
 
+const ImageWrapper = styled.div`
+`
 
 
 export default Homepage;

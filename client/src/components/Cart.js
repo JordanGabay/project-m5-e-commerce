@@ -4,6 +4,7 @@ import CartItem from "../CartItem";
 import { useSelector } from "react-redux";
 import { getStoreItemArray } from "../reducers";
 import CircularProgress from "@material-ui/core/CircularProgress";
+import { Link } from 'react-router-dom'
 
 import { currentUser } from "./Login";
 
@@ -21,11 +22,6 @@ const Cart = () => {
     <>
       <ShoppingWrapper>
         <ShoppingCart>Shopping Bag</ShoppingCart>
-        <Wrapper2>
-          <IPR>Item</IPR>
-          <IPR>Price</IPR>
-          <IPR>Remove</IPR>
-        </Wrapper2>
         {storeItems.map((item) => {
           return <CartItem item={item} />;
         })}
@@ -36,8 +32,9 @@ const Cart = () => {
           Enter your email to login or continue to checkout as a guest.
         </EmailSpan>
         <EnterEmail>Email Address</EnterEmail>
-        <EmailTextBox input type="email" id="email" name="email"></EmailTextBox>
-        <CheckoutBox>PROCEED TO CHECKOUT</CheckoutBox>
+        <CheckoutWrapper>
+          <CheckoutBox to="/checkout">PROCEED TO CHECKOUT</CheckoutBox>
+        </CheckoutWrapper>
       </EmailWrapper>
     </>
   ) : (
@@ -55,27 +52,35 @@ const ShoppingCart = styled.h3`
   margin-bottom: 20px;
 `;
 
-const Wrapper2 = styled.div`
-  word-spacing: 20px;
-  color: blue;
-`;
-
-const IPR = styled.span``;
-
 const EmailWrapper = styled.div``;
 
-const Checkout = styled.h3``;
-
-const EmailSpan = styled.p``;
-
-const EnterEmail = styled.p``;
-
-const EmailTextBox = styled.input``;
-
-const CheckoutBox = styled.button`
+const Checkout = styled.h3`
+  margin-top: 20px;
   margin-left: 10px;
-  color: white;
-  background-color: black;
 `;
+
+const EmailSpan = styled.p`
+  margin-top: 5px;
+  margin-left: 10px;
+`;
+
+const EnterEmail = styled.p`
+  margin-top: 5px;
+  margin-left: 10px;
+`;
+
+const CheckoutWrapper = styled.div`
+margin-top: 10px;
+
+`
+
+const CheckoutBox = styled(Link)`
+color:white;
+background-color:black;
+padding: 5px;
+border-radius: 5px;
+margin-left: 10px;
+`
+
 
 export default Cart;

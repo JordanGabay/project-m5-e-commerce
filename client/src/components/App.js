@@ -8,6 +8,8 @@ import Homepage from "./Homepage";
 import ProductFeed from "./ProductFeed";
 import Login from "./Login";
 import Cart from "./Cart";
+import Checkout from './Checkout'
+import Order from './Order'
 
 const App = () => {
   const [items, setItems] = useState([]);
@@ -41,13 +43,17 @@ const App = () => {
           <Route exact path="/cart">
             <Cart />
           </Route>
-          {/* <Route>
-            Anything else
-          </Route> */}
+          <Route path='/checkout'>
+            <Checkout />
+          </Route>
+          <Route path='/order'>
+            <Order />
+          </Route>
         </Switch>
       </Router>
     </Wrapper>
   );
 };
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+`;
 export default App;

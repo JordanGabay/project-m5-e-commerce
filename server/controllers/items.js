@@ -30,13 +30,13 @@ itemsRouter.put('/:id', async (req, res) => {
         numInStock: item.numInStock - req.body.purchased 
     }
 
-    if (newQuantity.numInStock < 0) {
-        res.status(400).json({ error: `insufficient stock`, stock: item.numInStock })
-    } else {
+    // if (newQuantity.numInStock < 0) {
+    //     res.status(400).json({ error: `insufficient stock`, stock: item.numInStock })
+    // } else {
         const updatedItem = await Item.findByIdAndUpdate(req.params.id, newQuantity, { new: true })
 
         updatedItem ? res.status(200).json(updatedItem) : res.status(404).end()
-    }
+    //}
 })
 
 // SINGLE USE TO POPULATE DATABASE

@@ -6,7 +6,6 @@ import Searchbar from "./Searchbar";
 import logo from "./assets/logo.png";
 
 const Navbar = () => {
-  console.log(logo);
   return (
     <NavWrapper>
       <NavbarLeft>
@@ -40,19 +39,24 @@ export default Navbar;
 
 const NavWrapper = styled.nav`
   display: flex;
-  margin: 12px;
   justify-content: space-between;
-  
+  padding: 10px 0;
+  margin-bottom: 25px;
+  background-color: #3c3c3c;
 `;
 
 const StyledLogo = styled.img`
+  position: absolute;
+  left: calc(50vw - 73px);
+  top: 18px;
   height: 28px;
-  margin: 12px 124px 0 0;
+  z-index: 10;
 `;
 
 const NavItem = styled.li`
   .active {
     font-weight: bold;
+    text-decoration: underline;
   }
   &:hover {
     text-decoration: underline;
@@ -67,11 +71,9 @@ const NavbarLeft = styled.div`
 const NavbarRight = styled.div`
   display: flex;
   align-items: center;
-  position: absolute;
-  top: 28px;
-  left: 92vw;
 `;
 
 const StyledLink = styled(NavLink)`
-  margin: auto 10px;
+  margin: auto 30px;
+  color: #dadada;
 `;

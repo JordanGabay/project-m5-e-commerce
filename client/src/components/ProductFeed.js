@@ -71,34 +71,55 @@ const ProductFeed = ({ items }) => {
       {filteredItems.length > 0 ? (
         <>
           <PageNav>
-            {page !== 1 && (
-              <Link to={`/products/${page === 2 ? "" : page - 1}${search}`}>
-                previous
-              </Link>
-            )}
-            <form onSubmit={(ev) => handlePageSelect(ev)} autoComplete="off">
-              <Input name="input" placeholder={page} />
-              <PageInfo>
-                products {startIndex + 1}-
-                {page === maxPage ? totalItems : endIndex} of {totalItems}
-              </PageInfo>
-            </form>
-            {page !== maxPage && (
-              <div>
-                <Link to={`/products/${page + 1}${search}`}>next</Link>
-              </div>
-            )}
-            <label htmlFor="numItems">Items per page:</label>
-            <select
-              name="numItems"
-              defaultValue="24"
-              onChange={(ev) => handleItemsPerPageChange(ev)}
-            >
-              <option value="12">12</option>
-              <option value="24">24</option>
-              <option value="48">48</option>
-              <option value={`${totalItems}`}>all</option>
-            </select>
+            <PageNavLeft>
+              <form onSubmit={(ev) => handlePageSelect(ev)} autoComplete="off">
+                <span>Page </span>
+                <Input name="input" placeholder={page} />
+                <PageInfo>
+                  products {startIndex + 1}-
+                  {page === maxPage ? totalItems : endIndex} of {totalItems}
+                </PageInfo>
+              </form>
+              {page !== 1 && (
+                <PreviousLink
+                  to={`/products/${page === 2 ? "" : page - 1}${search}`}
+                >
+                  Previous
+                </PreviousLink>
+              )}
+              {page !== maxPage && (
+                <NextLink to={`/products/${page + 1}${search}`}>Next</NextLink>
+              )}
+            </PageNavLeft>
+            <PageNavRight>
+              <label htmlFor="numItems">Items per page:</label>
+              <select
+                name="numItems"
+                defaultValue="24"
+                onChange={(ev) => handleItemsPerPageChange(ev)}
+              >
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
+                <option value={`${totalItems}`}>all</option>
+              </select>
+              <PriceFilter>
+                <form>
+                  Price range: ${" "}
+                  <PriceInput
+                    value={lowPrice === 0 ? "" : lowPrice}
+                    type="number"
+                    onChange={(ev) => setLowPrice(ev.target.value)}
+                  />{" "}
+                  to ${" "}
+                  <PriceInput
+                    value={highPrice === 0 ? "" : highPrice}
+                    type="number"
+                    onChange={(ev) => setHighPrice(ev.target.value)}
+                  />
+                </form>
+              </PriceFilter>
+            </PageNavRight>
           </PageNav>
           {search && (
             <SearchInfo>
@@ -115,56 +136,44 @@ const ProductFeed = ({ items }) => {
       ) : (
         (search && (
           <SearchInfo>
-            <h2>no products found matching "{search.slice(8)}"</h2>
+            <h2>No products found matching "{search.slice(8)}"</h2>
             <ClearButton onClick={() => history.push("/products")}>
               X
             </ClearButton>
           </SearchInfo>
-        )) || <h2>no products found in that price range</h2>
+        )) || <h2>No products found in that price range</h2>
       )}
-
-      <PriceFilter>
-        <form>
-          Price range:{" "}
-          <PriceInput
-            value={lowPrice === 0 ? "" : lowPrice}
-            type="number"
-            onChange={(ev) => setLowPrice(ev.target.value)}
-          />{" "}
-          to{" "}
-          <PriceInput
-            value={highPrice === 0 ? "" : highPrice}
-            type="number"
-            onChange={(ev) => setHighPrice(ev.target.value)}
-          />
-        </form>
-      </PriceFilter>
 
       <ProductGrid>
         {display
           .filter((item) =>
             search ? item.name.toLowerCase().includes(search.slice(8)) : item
           )
-          .map((item) => (
-            <ItemWrapper key={item.id}>
-              <Image src={item.imageSrc} />
-              <ItemName>{item.name}</ItemName>
-              <ItemBody>{item.body_location}</ItemBody>
-              <Button onClick={() => dispatch(addItem(item))}>
-                Add to Cart - {item.price}
-              </Button>
-            </ItemWrapper>
-          ))}
+          .map((item) =>
+            item.numInStock > 0 ? (
+              <ItemWrapper key={item.id}>
+                <Image src={item.imageSrc} />
+                <ItemName>{item.name}</ItemName>
+                <ItemPrice>{item.price}</ItemPrice>
+                <Button onClick={() => dispatch(addItem(item))}>
+                  Add to cart
+                </Button>
+              </ItemWrapper>
+            ) : (
+              <ItemWrapper key={item.id}>
+                <Image src={item.imageSrc} />
+                <ItemName>{item.name}</ItemName>
+                <ItemPrice>{item.price}</ItemPrice>
+                <OOSButton>Out of Stock</OOSButton>
+              </ItemWrapper>
+            )
+          )}
       </ProductGrid>
     </FeedWrapper>
   );
 };
 
-const FeedWrapper = styled.div`
-  .webkit-scrollbar {
-    display: none;
-  }
-`;
+const FeedWrapper = styled.div``;
 
 const PriceFilter = styled.div``;
 
@@ -178,7 +187,18 @@ const PriceInput = styled.input`
   }
 `;
 
-const PageNav = styled.div``;
+const PageNav = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
+const PageNavLeft = styled.div``;
+
+const PageNavRight = styled.div`
+  align-items: right;
+  justify-content: right;
+  text-align: right;
+`;
 
 const Input = styled.input`
   width: 25px;
@@ -187,10 +207,22 @@ const Input = styled.input`
 const PageInfo = styled.span`
   color: gray;
   font-size: 0.7em;
+  margin-left: 4px;
 `;
 
 const SearchInfo = styled.div`
   display: flex;
+`;
+
+const PreviousLink = styled(Link)`
+  display: inline;
+  margin-right: 20px;
+  color: #3c3c3c;
+`;
+
+const NextLink = styled(Link)`
+  display: inline;
+  color: #3c3c3c;
 `;
 
 const ClearButton = styled.button`
@@ -203,6 +235,7 @@ const ClearButton = styled.button`
 
 const ProductGrid = styled.div`
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
 `;
 
@@ -211,8 +244,9 @@ const ItemWrapper = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: calc(80% / 4);
-  margin: 0.5rem 1rem;
+  width: calc(50% / 4 + 90px);
+  height: 300px;
+  margin: 1rem;
   box-sizing: border-box;
 `;
 
@@ -225,13 +259,28 @@ const ItemName = styled.span`
   font-weight: bold;
   text-align: center;
   padding: 5px;
-  font-size: 15px;
+  font-size: 14px;
+  max-width: 70%;
 `;
 
-const ItemBody = styled.span`
-  font-size: 13px;
+const ItemPrice = styled.span`
+  display: inline-block;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  background-color: #3c3c3c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+`;
+
+const OOSButton = styled.button`
+  background-color: darkblue;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+`;
 
 export default ProductFeed;

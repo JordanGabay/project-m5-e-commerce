@@ -13,7 +13,7 @@ const Homepage = () => {
 
   return status === "idle" ? (
     <>
-      <div>Website name</div>
+      <div>Welcome to our website! Here at "inser name here", we pride ourselves on having </div>
       <div>Content</div>
       <div>Content</div>
       <div>Content</div>

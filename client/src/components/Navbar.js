@@ -40,20 +40,23 @@ export default Navbar;
 const NavWrapper = styled.nav`
   display: flex;
   justify-content: space-between;
+  padding: 10px 0;
   margin-bottom: 25px;
+  background-color: #3c3c3c;
 `;
 
 const StyledLogo = styled.img`
   position: absolute;
   left: calc(50vw - 73px);
-  top: 24px;
+  top: 18px;
   height: 28px;
-  z-index: -5;
+  z-index: 10;
 `;
 
 const NavItem = styled.li`
   .active {
     font-weight: bold;
+    text-decoration: underline;
   }
   &:hover {
     text-decoration: underline;
@@ -71,5 +74,6 @@ const NavbarRight = styled.div`
 `;
 
 const StyledLink = styled(NavLink)`
-  margin: auto 10px;
+  margin: auto 30px;
+  color: #dadada;
 `;

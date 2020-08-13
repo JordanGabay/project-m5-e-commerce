@@ -9,7 +9,7 @@ import { currentUser } from "./Login";
 const ProductFeed = ({ items }) => {
   const [status, setStatus] = useState("loading");
 
-  const [itemsPerPage, setItemsPerPage] = useState(24);
+  const [itemsPerPage, setItemsPerPage] = useState(40);
   const [lowPrice, setLowPrice] = useState(0);
   const [highPrice, setHighPrice] = useState(0);
   const history = useHistory();
@@ -95,12 +95,12 @@ const ProductFeed = ({ items }) => {
               <label htmlFor="numItems">Items per page:</label>
               <select
                 name="numItems"
-                defaultValue="24"
+                defaultValue="40"
                 onChange={(ev) => handleItemsPerPageChange(ev)}
               >
-                <option value="12">12</option>
-                <option value="24">24</option>
-                <option value="48">48</option>
+                <option value="20">20</option>
+                <option value="40">40</option>
+                <option value="80">80</option>
                 <option value={`${totalItems}`}>all</option>
               </select>
               <PriceFilter>
@@ -208,12 +208,12 @@ const SearchInfo = styled.div`
 const PreviousLink = styled(Link)`
   display: inline;
   margin-right: 20px;
-  color: darkslategrey;
+  color: #3c3c3c;
 `;
 
 const NextLink = styled(Link)`
   display: inline;
-  color: darkslategrey;
+  color: #3c3c3c;
 `;
 
 const ClearButton = styled.button`
@@ -236,6 +236,7 @@ const ItemWrapper = styled.div`
   justify-content: center;
   align-items: center;
   width: calc(50% / 4 + 90px);
+  height: 300px;
   margin: 1rem;
   box-sizing: border-box;
 `;
@@ -258,7 +259,7 @@ const ItemPrice = styled.span`
 `;
 
 const Button = styled.button`
-  background-color: darkslategrey;
+  background-color: #3c3c3c;
   color: white;
   padding: 5px 10px;
   border-radius: 10px;

@@ -9,7 +9,7 @@ import { currentUser } from "./Login";
 const ProductFeed = ({ items }) => {
   const [status, setStatus] = useState("loading");
 
-  const [itemsPerPage, setItemsPerPage] = useState(40);
+  const [itemsPerPage, setItemsPerPage] = useState(24);
   const [lowPrice, setLowPrice] = useState(0);
   const [highPrice, setHighPrice] = useState(0);
   const history = useHistory();
@@ -95,12 +95,12 @@ const ProductFeed = ({ items }) => {
               <label htmlFor="numItems">Items per page:</label>
               <select
                 name="numItems"
-                defaultValue="40"
+                defaultValue="24"
                 onChange={(ev) => handleItemsPerPageChange(ev)}
               >
-                <option value="20">20</option>
-                <option value="40">40</option>
-                <option value="80">80</option>
+                <option value="12">12</option>
+                <option value="24">24</option>
+                <option value="48">48</option>
                 <option value={`${totalItems}`}>all</option>
               </select>
               <PriceFilter>
@@ -149,16 +149,25 @@ const ProductFeed = ({ items }) => {
           .filter((item) =>
             search ? item.name.toLowerCase().includes(search.slice(8)) : item
           )
-          .map((item) => (
-            <ItemWrapper key={item.id}>
-              <Image src={item.imageSrc} />
-              <ItemName>{item.name}</ItemName>
-              <ItemPrice>{item.price}</ItemPrice>
-              <Button onClick={() => dispatch(addItem(item))}>
-                Add to cart
-              </Button>
-            </ItemWrapper>
-          ))}
+          .map((item) =>
+            item.numInStock > 0 ? (
+              <ItemWrapper key={item.id}>
+                <Image src={item.imageSrc} />
+                <ItemName>{item.name}</ItemName>
+                <ItemPrice>{item.price}</ItemPrice>
+                <Button onClick={() => dispatch(addItem(item))}>
+                  Add to cart
+                </Button>
+              </ItemWrapper>
+            ) : (
+              <ItemWrapper key={item.id}>
+                <Image src={item.imageSrc} />
+                <ItemName>{item.name}</ItemName>
+                <ItemPrice>{item.price}</ItemPrice>
+                <OOSButton>Out of Stock</OOSButton>
+              </ItemWrapper>
+            )
+          )}
       </ProductGrid>
     </FeedWrapper>
   );
@@ -260,6 +269,14 @@ const ItemPrice = styled.span`
 
 const Button = styled.button`
   background-color: #3c3c3c;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 10px;
+  margin-top: 5px;
+`;
+
+const OOSButton = styled.button`
+  background-color: darkblue;
   color: white;
   padding: 5px 10px;
   border-radius: 10px;

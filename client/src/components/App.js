@@ -28,7 +28,6 @@ const App = () => {
       <Router>
         <Globalstyles />
         <Navbar />
-        <Searchbar />
         <Switch>
           <Route exact path="/">
             {/* Changed homepage to a website introduction page */}

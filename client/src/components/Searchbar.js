@@ -1,39 +1,38 @@
-import React  from 'react'
-import { useHistory } from 'react-router-dom'
-import styled from 'styled-components'
+import React from "react";
+import { useHistory } from "react-router-dom";
+import styled from "styled-components";
 
 const Searchbar = () => {
-    const history = useHistory()
-    
-    const handleSearch = (event) => {
-        event.preventDefault()
-        if (event.target.search.value === '') {
-            event.target.search.placeholder = 'enter a search term!'
-        } else {
-            history.push(`/products?search=${event.target.search.value}`)
-            event.target.search.value = ''
-            event.target.search.placeholder = ''
-        }
-            
-        
-    }
+  const history = useHistory();
 
-    return (
-        <Wrapper>
-            <form onSubmit={(e) => handleSearch(e)}>
-                <Input  name='search' />
-            </form>
-        </Wrapper>
-    )
-}
+  const handleSearch = (event) => {
+    event.preventDefault();
+    if (event.target.search.value === "") {
+      event.target.search.placeholder = "Search";
+    } else {
+      history.push(`/products?search=${event.target.search.value}`);
+      event.target.search.value = "";
+      event.target.search.placeholder = "Search";
+    }
+  };
+
+  return (
+    <Wrapper>
+      <form onSubmit={(e) => handleSearch(e)}>
+        <Input name="search" placeholder="Search" />
+      </form>
+    </Wrapper>
+  );
+};
 
 const Wrapper = styled.div`
-    height: 50px;
-    text-align: center;
-`
+  height: 50px;
+  text-align: center;
+  padding-top: 13px;
+`;
 
 const Input = styled.input`
-    width: calc(100vw - 200px)
-`
+  width: 150px;
+`;
 
-export default Searchbar
+export default Searchbar;

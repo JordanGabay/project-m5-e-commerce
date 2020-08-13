@@ -43,13 +43,12 @@ font-style: sans-serif;
 
 const StyledLink = styled(NavLink)`
   font-weight: bold;
-  
 `;
 
 const Image = styled.img`
 align-items: center;
 display: flex;
-margin-left: 200px;
+margin: 0 auto;
 margin-bottom: 50px;
 border-radius: 5px;
 `

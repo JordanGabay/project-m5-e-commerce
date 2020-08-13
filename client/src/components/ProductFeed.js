@@ -173,7 +173,9 @@ const ProductFeed = ({ items }) => {
   );
 };
 
-const FeedWrapper = styled.div``;
+const FeedWrapper = styled.div`
+font-family: sans-serif;
+`;
 
 const PriceFilter = styled.div``;
 

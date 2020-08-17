@@ -1,54 +1,32 @@
 # Wearables E-Commerce Project
 
-[See the list of TEAMS](__documentation/TEAMS.md)
+This is the updated README doc.
 
-You will make use of _everything_ that you have learned thus far in the bootcamp to build an e-commerce app that will showcase all of the provided _wearables_ items.
+For the project, we have created a wearable online e-commerce store called JORDAC (Jordan and Jackie together).
+For the homepage we went with a sleek, casual approach by showing the navbar, a basic description of our company and a gif. Underneath the gif is a NAVLINK to get to the product page, however all of the links on the NavBar are functioning, including the logo name which acts as a return home button.
 
-The stack is React.Js, Redux, Node.Js, and styled-components.
+Homepage: 
 
-Your node server should be RESTful and follow REST principles, at least to the extent we learned during the bootcamp.
+<img src="./images/Homepage.png">
 
-## Getting Started
+We created a products page where all of the products are displayed, however since displaying all of them on one page took so long to load... We created multiple pages for the products. users can use the searchbar to find products by specific companies, changed the amount displayed per page or search by price. Items out of stock cannot be added to the cart.
 
-<img src="./server/assets/software-dev-path.jpg" style="width: 100%;" />
+<img src="./images/ProductPage.png">
+<img src="./images/CompanySearch.png">
 
-You have your assignment and your team. What should you do first? This will vary for every team, and even every team member.
+When users click on the account section, they will be able to use our Google Account sign in authentication so that they can check out with their gmail and this will save their information (able to sign onto the gmail and access it throughout the website but could not get checkout implemented).
 
-**The important thing is to NOT just jump in and start coding!**
+<img src="./images/GoogleLogIn.png">
+<img src="./images/GoogleLogIn2.png">
 
-There probably shouldn't be any coding until very near the end of the first day.
+Items added to the cart will be displayed in our cart section. The quantity can be updated or the item can be removed. 
 
-## Meet your Product Manager!
+<img src="./images/Cart.png">
 
-Each team has been assigned a product manager. This person is in charge of answering questions, guiding you and basically preventing everything from falling apart!
+We implemented a basic checkout system where users can put their email, card info and other basic information so they can check out securely. 
 
-This person should be present for some of your team meetings, but not all. PMs are super busy people and have multiple projects, people to manage. 😉
+<img src="./images/Checkout.png">
 
-## Planning
+Finally we have our order confirmation page, it's very basic but it shows the item you purchased and the total you paid. 
 
-1. You will break into 3 groups (with your assigned PM.)
-2. Your PM will answer any initial questions, and give you more information, as required.
-3. Breakout into a separate meeting with just your team. _Your PM will bounce from team to team to make sure you're on track._
-4. Time to use the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDA.md)
-
-### First team meeting
-
-It could also be a good/fun idea to give yourselves an original team name. :)
-
-Your first team meeting should start with the [Kickoff Meeting Agenda](__documentation/KICKOFF_MEETING_AGENDa.md).
-
-[Successful Software Project Delivery in 10 Steps](https://www.appnovation.com/blog/successful-software-project-delivery-10-steps).
-
-💡 How a project starts is indicative of how it will end.
-
-## Teamwork
-
-The most important aspect of this project is the ability to work in a team. No matter your contribution to the project, you should understand the **FULL** codebase. This will require that you
-
-- **review** each other's code
-- **ask** questions when you don't understand
-- **comment** your code extensively. _Always go for clarity over brevity._
-
-## GitHub
-
-see the [GITHUB Document](__documentation/GITHUB.md)
+<img src="./images/OrderConfirmation.png">
